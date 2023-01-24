@@ -17,8 +17,8 @@ var circle = new ProgressBar.Circle('#example-percent-container', {
         
     }
 });
-var start = new Date(2021,1,4);
-var payday = new Date(2021,3,15);
+var start = new Date(2023,0,24);
+var payday = new Date(2023,0,27,10,42);
 var msperday = 1000*60*60*24;
 var endnb = (payday.getTime() - start.getTime()) / msperday;
 
