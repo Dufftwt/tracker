@@ -39,8 +39,7 @@ function animate(){
     let daysPassed = (today.getTime() - start.getTime()) / msperday;
     var final = (daysPassed / endnb) * 100;
     circle.animate(final.toFixed(6) / 100);
-    circle.setText(daynb.toFixed() + ":" + hournb.toFixed() + ":" + minnb.toFixed() + ":" + secondnb.toFixed());
-
-    //requestAnimationFrame(animate);
+    circle.setText(daynb.toFixed().padStart(2,"0") + ":" + hournb.toFixed().padStart(2,"0") + ":" + minnb.toFixed().padStart(2,"0") + ":" + secondnb.toFixed().padStart(2,"0"));
 }
-setInterval(animate, 70);
+
+setInterval(animate, 100);
