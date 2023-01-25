@@ -5,7 +5,7 @@ var circle = new ProgressBar.Circle('#example-percent-container', {
     strokeWidth: 3,
     trailWidth: 1,
     duration:0,
-    from: {color: "#2bde73"},
+    from: {color: "#00FF00"},
     to: {color: "#FF0000"},
     text: {
         value: '0'
@@ -20,6 +20,9 @@ var circle = new ProgressBar.Circle('#example-percent-container', {
 var start = new Date(2023,0,24);
 var payday = new Date(2023,0,27,10,42);
 var msperday = 1000*60*60*24;
+let mspermin = 1000*60;
+let msperhour = 1000*60*60;
+let mspersecond = 1000;
 var endnb = (payday.getTime() - start.getTime()) / msperday;
 
 
@@ -27,12 +30,16 @@ function animate(){
 
     var today = new Date();
     
-    var daynb = (today.getTime() - start.getTime()) / msperday;
-
+    let distance = (payday.getTime() - today.getTime());
+    var daynb = Math.floor(distance / msperday);
+    let hournb = Math.floor((distance % msperday) / msperhour);
+    let minnb = Math.floor((distance % msperhour) / mspermin);
+    let secondnb = Math.floor((distance % mspermin) / mspersecond);
     
-    var final = (daynb / endnb) * 100;
+    let daysPassed = (today.getTime() - start.getTime()) / msperday;
+    var final = (daysPassed / endnb) * 100;
     circle.animate(final.toFixed(6) / 100);
-    circle.setText(final.toFixed(6).toString() + "%")
+    circle.setText(daynb.toFixed() + ":" + hournb.toFixed() + ":" + minnb.toFixed() + ":" + secondnb.toFixed());
 
     //requestAnimationFrame(animate);
 }
